@@ -16,8 +16,11 @@ public class Main  {
     //constant variables given in paper
     static double TRANSMISSION_POWER_MICRO = 38; //TODO: verify units - previous work changed?
     static double TRANSMISSION_POWER_MACRO = 865;
+    static double POWER_CONSUMPTION_MICRO = 0.5;
+    static double POWER_CONSUMPTION_MACRO = 20;
     static double SMALL_SCALE_FADING = 1;
     static double THERMAL_NOISE = 0.0000000000000000000039810717055; //Taken from previous work, TODO: VERIFY
+    static double RESOURCE_BLOCKS = 50; //from paper
 
     static BaseStation[] macroBaseStations = null;
     static BaseStation[] candidates = null;
@@ -58,7 +61,7 @@ public class Main  {
         }
 
         assignUsersToBase();
-        System.out.println("done");
+        calculateSINR(users[0]);
     }
 
 
@@ -84,6 +87,26 @@ public class Main  {
                 users[i].setAssignedBS(currBestBase);
             }
         }
+    }
+
+    public static double calculateSINR(User currUser){
+        BaseStation base = currUser.getAssignedBS();
+        double distance = Calc.distance(currUser.getLocation(), base.getLocation());
+
+        double signal = (base.isMacro()?POWER_CONSUMPTION_MACRO:POWER_CONSUMPTION_MICRO)
+                * Calc.channelGain(distance, SMALL_SCALE_FADING, base.isMacro());
+
+        double interferencePlusNoise = THERMAL_NOISE;
+        for(int i = 0; i < solutionSet.size(); i++){
+            if(base != solutionSet.get(i)) {
+                distance = Calc.distance(currUser.getLocation(), solutionSet.get(i).getLocation());
+                interferencePlusNoise +=
+                        (solutionSet.get(i).isMacro()?POWER_CONSUMPTION_MACRO:POWER_CONSUMPTION_MICRO)
+                        * Calc.channelGain(distance, SMALL_SCALE_FADING, solutionSet.get(i).isMacro());
+            }
+        }
+
+        return signal/interferencePlusNoise;
     }
 
 }

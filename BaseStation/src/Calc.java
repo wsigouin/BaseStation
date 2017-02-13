@@ -1,7 +1,7 @@
 /**
  * Created by wills on 2017-01-17.
  * Calc class holds useful functions for the various calculations of the project
- * All functions static, emulates the MATH class though with specific funcitons
+ * All functions static, emulates the MATH class though with specific functions
  */
 public class Calc {
     //Path loss formula taken from previous work
@@ -17,7 +17,6 @@ public class Calc {
     //Channel Gain formula taken from previous work
     //TODO: Check for correctness
     static double channelGain(double distance, double smallScaleFading, boolean isMacro){
-
         double pLoss = pathLoss(distance, isMacro);
 
         pLoss = Math.pow(10, -1 * pLoss/10);
