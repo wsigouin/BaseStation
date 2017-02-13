@@ -20,7 +20,8 @@ public class Main  {
     static double POWER_CONSUMPTION_MACRO = 20;
     static double SMALL_SCALE_FADING = 1;
     static double THERMAL_NOISE = 0.0000000000000000000039810717055; //Taken from previous work, TODO: VERIFY
-    static double RESOURCE_BLOCKS = 50; //from paper
+    static int RESOURCE_BLOCKS = 50; //from paper
+    static double BANDWITH = 10; //paper
 
     static BaseStation[] macroBaseStations = null;
     static BaseStation[] candidates = null;
@@ -61,7 +62,8 @@ public class Main  {
         }
 
         assignUsersToBase();
-        calculateSINR(users[0]);
+
+        System.out.println(calculateBaseStationCapacity(solutionSet.get(1)));
     }
 
 
@@ -85,6 +87,7 @@ public class Main  {
 
             if(currBestBase != null){
                 users[i].setAssignedBS(currBestBase);
+                currBestBase.assignUser(users[i]);
             }
         }
     }
@@ -95,7 +98,7 @@ public class Main  {
 
         double signal = (base.isMacro()?POWER_CONSUMPTION_MACRO:POWER_CONSUMPTION_MICRO)
                 * Calc.channelGain(distance, SMALL_SCALE_FADING, base.isMacro());
-
+        System.out.println(currUser.getX() + " " + signal);
         double interferencePlusNoise = THERMAL_NOISE;
         for(int i = 0; i < solutionSet.size(); i++){
             if(base != solutionSet.get(i)) {
@@ -108,5 +111,29 @@ public class Main  {
 
         return signal/interferencePlusNoise;
     }
+
+    public static double calculateBaseStationCapacity(BaseStation base){
+        System.out.println("--------------------------------");
+        double capacity = 0;
+        if(base.getNumUsers() != 0){
+            int subcarrierGroupOneSize = RESOURCE_BLOCKS % base.getNumUsers();
+
+            int groupOneSubcarriers = 12 * ((RESOURCE_BLOCKS/base.getNumUsers()) + 1);
+            int groupTwoSubcarriers = 12 * (RESOURCE_BLOCKS/base.getNumUsers());
+            
+            for(int i = 0; i < base.getNumUsers(); i++){
+                if(i < subcarrierGroupOneSize){
+                    capacity += (BANDWITH * (Math.log10(1 + calculateSINR(base.getUser(i))) / Math.log10(2))) * groupOneSubcarriers;
+                }
+                else{
+                    capacity += (BANDWITH * (Math.log10(1 + calculateSINR(base.getUser(i))) / Math.log10(2))) * groupTwoSubcarriers;
+                }
+            }
+        }
+
+        return capacity;
+    }
+
+
 
 }

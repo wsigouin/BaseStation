@@ -8,10 +8,10 @@ public class Calc {
     //TODO: Check for correctness
     static double  pathLoss(double distance, boolean isMacro){
         if(isMacro){
-            return 128.1+37.6*(Math.log(distance));
+            return 128.1+37.6*(Math.log10(distance));
         }
         else{
-            return 140.7+37.6*(Math.log(distance));
+            return 140.7+37.6*(Math.log10(distance));
         }
     }
     //Channel Gain formula taken from previous work
@@ -25,6 +25,6 @@ public class Calc {
 
     //Basic distance function modified to use the Point Class
     static double distance(Point a, Point b){
-        return Math.sqrt((a.x-b.x)*(a.x-b.x) + (a.y*b.y)*(a.y*b.y));
+        return Math.sqrt((a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y));
     }
 }
