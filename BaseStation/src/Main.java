@@ -40,7 +40,7 @@ public class Main  {
         macroBaseStations = new BaseStation[numMacro];
 
         for(int i = 0; i < numMacro; i++){
-            macroBaseStations[i] = new BaseStation(in.nextInt(), in.nextInt(), true);
+            macroBaseStations[i] = new BaseStation(in.nextDouble(), in.nextDouble(), true);
 
             //Macro base stations are already there, and are hence part of the solution set by default
             solutionSet.add(macroBaseStations[i]);
@@ -50,7 +50,7 @@ public class Main  {
         candidates = new BaseStation[numCandidate];
 
         for(int i = 0; i < numCandidate; i++){
-            candidates[i] = new BaseStation(in.nextInt(), in.nextInt(), false);
+            candidates[i] = new BaseStation(in.nextDouble(), in.nextDouble(), false);
         }
 
         //Users are only assigned base stations after this step, as it is part of the algorithm
@@ -58,12 +58,13 @@ public class Main  {
         users = new User[numUsers];
 
         for(int i = 0; i < numUsers; i++){
-            users[i] = new User(in.nextInt(), in.nextInt());
+            users[i] = new User(in.nextDouble(), in.nextDouble());
         }
 
         assignUsersToBase();
 
-        System.out.println(calculateBaseStationCapacity(solutionSet.get(1)));
+        System.out.println(calculateEfficiency());
+
     }
 
 
@@ -73,18 +74,26 @@ public class Main  {
         BaseStation currBestBase;
         double distance;
 
+        //clear all assigned users before adding new ones
+        for(int i = 0; i < solutionSet.size(); i ++){
+            solutionSet.get(i).removeAllUsers();
+        }
+
         for(int i = 0; i < users.length; i++){
             bestStrength = 0;
             currBestBase = null;
             for(int j = 0; j < solutionSet.size(); j++){
                 distance = Calc.distance(users[i].getLocation(), solutionSet.get(j).getLocation());
-                currStrength = (solutionSet.get(j).isMacro()?TRANSMISSION_POWER_MACRO:TRANSMISSION_POWER_MICRO)*Calc.channelGain(distance, SMALL_SCALE_FADING, solutionSet.get(j).isMacro());
+                currStrength = (solutionSet.get(j).isMacro()?TRANSMISSION_POWER_MACRO:TRANSMISSION_POWER_MICRO)
+                        * Calc.channelGain(distance, SMALL_SCALE_FADING, solutionSet.get(j).isMacro());
+
                 if(currStrength > bestStrength){
                     bestStrength = currStrength;
                     currBestBase = solutionSet.get(j);
                 }
             }
 
+            //add user to base, and add base to user
             if(currBestBase != null){
                 users[i].setAssignedBS(currBestBase);
                 currBestBase.assignUser(users[i]);
@@ -98,40 +107,58 @@ public class Main  {
 
         double signal = (base.isMacro()?POWER_CONSUMPTION_MACRO:POWER_CONSUMPTION_MICRO)
                 * Calc.channelGain(distance, SMALL_SCALE_FADING, base.isMacro());
-        System.out.println(currUser.getX() + " " + signal);
-        double interferencePlusNoise = THERMAL_NOISE;
+
+        double noise = THERMAL_NOISE;
+        double interference = 0;
         for(int i = 0; i < solutionSet.size(); i++){
             if(base != solutionSet.get(i)) {
                 distance = Calc.distance(currUser.getLocation(), solutionSet.get(i).getLocation());
-                interferencePlusNoise +=
+                interference +=
                         (solutionSet.get(i).isMacro()?POWER_CONSUMPTION_MACRO:POWER_CONSUMPTION_MICRO)
                         * Calc.channelGain(distance, SMALL_SCALE_FADING, solutionSet.get(i).isMacro());
             }
         }
 
-        return signal/interferencePlusNoise;
+        return signal/(interference + noise);
     }
 
     public static double calculateBaseStationCapacity(BaseStation base){
-        System.out.println("--------------------------------");
         double capacity = 0;
         if(base.getNumUsers() != 0){
             int subcarrierGroupOneSize = RESOURCE_BLOCKS % base.getNumUsers();
 
             int groupOneSubcarriers = 12 * ((RESOURCE_BLOCKS/base.getNumUsers()) + 1);
             int groupTwoSubcarriers = 12 * (RESOURCE_BLOCKS/base.getNumUsers());
-            
+
+            //number of subcarriers divided amongst all users on the tower at one time
             for(int i = 0; i < base.getNumUsers(); i++){
                 if(i < subcarrierGroupOneSize){
-                    capacity += (BANDWITH * (Math.log10(1 + calculateSINR(base.getUser(i))) / Math.log10(2))) * groupOneSubcarriers;
+                    capacity += (BANDWITH
+                            * (Math.log10(1 + calculateSINR(base.getUser(i))) / Math.log10(2)))
+                            * groupOneSubcarriers;
                 }
                 else{
-                    capacity += (BANDWITH * (Math.log10(1 + calculateSINR(base.getUser(i))) / Math.log10(2))) * groupTwoSubcarriers;
+                    capacity += (BANDWITH
+                            * (Math.log10(1 + calculateSINR(base.getUser(i))) / Math.log10(2)))
+                            * groupTwoSubcarriers;
                 }
             }
         }
 
         return capacity;
+    }
+
+    public static double calculateEfficiency(){
+
+        double totalCapacity = 0;
+        for(int i = 0; i < solutionSet.size(); i ++){
+            totalCapacity += calculateBaseStationCapacity(solutionSet.get(i));
+        }
+
+        double powerConsumption = POWER_CONSUMPTION_MACRO * macroBaseStations.length
+                + POWER_CONSUMPTION_MICRO * (solutionSet.size() - macroBaseStations.length);
+
+        return totalCapacity/powerConsumption;
     }
 
 
