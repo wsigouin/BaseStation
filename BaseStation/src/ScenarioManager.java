@@ -27,6 +27,7 @@ public class ScenarioManager {
     static double THERMAL_NOISE = 0.0000000000000000000039810717055; //Taken from previous work, TODO: VERIFY
     static int RESOURCE_BLOCKS = 50; //from paper
     static double BANDWITH = 10; //paper
+    static double AREA_SIZE = 10000;
 
     static double TARGET_CAPACITY = 0;
     static BaseStation[] macroBaseStations = null;
@@ -36,7 +37,7 @@ public class ScenarioManager {
     //the final result will be saved in this structure
     static ArrayList<BaseStation> solutionSet = new ArrayList<>();
 
-    public static void init(String filename, boolean newScenario) throws FileNotFoundException {
+    static void init(String filename, boolean newScenario) throws FileNotFoundException {
         if(newScenario){
             generateScenario(filename);
         }
@@ -80,7 +81,7 @@ public class ScenarioManager {
      * The base stations also keep track of the users which are connected.
      * Is called before ever efficiency calculation.
      */
-    public static void assignUsersToBase(){
+    private static void assignUsersToBase(){
         double currStrength;
         double bestStrength;
         BaseStation currBestBase;
@@ -119,7 +120,7 @@ public class ScenarioManager {
      * @param currUser  the user being assessed, it knows which base station it is connected to
      * @return N/A      A ratio of the signal strength to the interference/noise strength
      */
-    public static double calculateSINR(User currUser){
+    private static double calculateSINR(User currUser){
         BaseStation base = currUser.getAssignedBS();
         double distance = Calc.distance(currUser.getLocation(), base.getLocation());
 
@@ -140,7 +141,7 @@ public class ScenarioManager {
         return signal/(interference + noise);
     }
 
-    public static double calculateTotalCapacity(){
+    static double calculateTotalCapacity(){
         assignUsersToBase();
         double totalCapacity = 0;
         for(int i = 0; i < solutionSet.size(); i ++){
@@ -155,7 +156,7 @@ public class ScenarioManager {
      * @param   base        The base station in which all user's capacity is being assessed
      * @return  bits/sec    the overall capacity of all users connected ot this Base Station
      */
-    public static double calculateBaseStationCapacity(BaseStation base){
+    private static double calculateBaseStationCapacity(BaseStation base){
         double capacity = 0;
         if(base.getNumUsers() != 0){
             int subcarrierGroupOneSize = RESOURCE_BLOCKS % base.getNumUsers();
@@ -196,10 +197,10 @@ public class ScenarioManager {
         return totalCapacity/powerConsumption;
     }
 
-    public static void generateScenario(String filename) throws FileNotFoundException{
+    private static void generateScenario(String filename) throws FileNotFoundException{
         PrintWriter out = new PrintWriter(filename);
 
-        int numMacro = (int)(Math.random()*(10 - 5 + 1) + 5);
+        int numMacro = (int)(Math.random()*(100 - 50 + 1) + 50);
 
         out.write(numMacro +"\n");
 
@@ -209,7 +210,7 @@ public class ScenarioManager {
             out.write(num1 + " " + num2 + " \n");
         }
 
-        int numCandidates = (int)(Math.random()*(100 - 50 + 1) + 50);
+        int numCandidates = (int)(Math.random()*(1000 - 500 + 1) + 500);
 
         out.write(numCandidates +"\n");
 
@@ -219,7 +220,7 @@ public class ScenarioManager {
             out.write(num1 + " " + num2 + " \n");
         }
 
-        int numUsers = (int)(Math.random()*(4000 - 500 + 1) + 500);
+        int numUsers = (int)(Math.random()*(10000 - 5000 + 1) + 5000);
 
         out.write(numUsers +"\n");
 
@@ -229,18 +230,20 @@ public class ScenarioManager {
             out.write(num1 + " " + num2 + " \n");
         }
 
-        double efficiencyScale = Math.random()*(9 + 2);
+        double efficiencyScale = (Math.random()*(5)) + 1;
 
         out.write(efficiencyScale + " ");
 
         out.close();
     }
 
-    public static void saveSolution(String filename) throws FileNotFoundException{
+    static void saveSolution(String filename) throws FileNotFoundException{
         PrintWriter out = new PrintWriter(filename);
         out.println("Number of Macro Base Stations: " + macroBaseStations.length);
         out.println("Number of Micro Base Stations: " + (solutionSet.size() - macroBaseStations.length));
         out.println("Total number of Base Stations: " + solutionSet.size());
+        out.println("Overall capacity " + calculateTotalCapacity());
+        out.println("Overall Efficiency " + calculateEfficiency());
 
         out.println("\nBase Stations : ");
         for(int i = 0; i < solutionSet.size(); i++){
@@ -248,6 +251,7 @@ public class ScenarioManager {
             out.println((solutionSet.get(i).isMacro()?"Macro BS ":"Micro BS")
                     + " at " + solutionSet.get(i).getLocation());
         }
+
         out.close();
     }
 
