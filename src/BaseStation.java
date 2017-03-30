@@ -48,4 +48,9 @@ public class BaseStation {
     public void removeAllUsers(){
         assignedUsers.clear();
     }
+
+    @Override
+    public String toString(){
+        return (isMacro?"Macro ":"Micro ") + " Base Station located at " + location;
+    }
 }
