@@ -8,9 +8,9 @@ public class GenerateScenario {
     public static void main (String[] args) throws FileNotFoundException {
 
         PrintWriter out = new PrintWriter("scenario.txt");
-        double size = ScenarioManager.AREA_SIZE/2;
-        int maxMacro = 500;
-        int minMacro = 100;
+        double size = ScenarioManager.AREA_SIZE/4;
+        int maxMacro = 15;
+        int minMacro = 7;
         int maxCandidates = 10000;
         int minCandidates = 5000;
         int minUsers = 200;
@@ -23,8 +23,8 @@ public class GenerateScenario {
         out.write(numMacro +"\n");
 
         for(int i = 0; i < numMacro; i++){
-            double num1 = Math.random()*(size + size) - size;
-            double num2 = (Math.random()*(size + size) - size);
+            double num1 = Math.random()*(size*2 + size*2) - size*2;
+            double num2 = (Math.random()*(size*2 + size*2) - size*2);
             out.write(num1 + " " + num2 + " \n");
         }
 
@@ -48,7 +48,7 @@ public class GenerateScenario {
             out.write(num1 + " " + num2 + " \n");
         }
 
-        double efficiencyScale = Math.random()*(1.5 - 1.1) + 1.1;
+        double efficiencyScale = 5;
 
         out.write(efficiencyScale + " ");
 

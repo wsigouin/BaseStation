@@ -7,22 +7,22 @@ import java.util.Arrays;
  */
 public class RelativeGrid {
     public static void main (String[] args) throws FileNotFoundException {
-        ScenarioManager.init("scenario.txt", false);
-        System.out.println("GRID SOLUTION");
+        ScenarioManager.init("scenario.txt");
+        System.out.println("RELATIVE GRID SOLUTION");
 
         ArrayList<BaseStation> remainingCandidates = new ArrayList<>();
         ArrayList<BaseStation> promotedCandidates = new ArrayList<>();
 
         remainingCandidates.addAll(Arrays.asList(ScenarioManager.candidates));
 
-        int gridDivisor = 32;
+        int gridDivisor = 64;
 
         GridSquare[][] grid = new GridSquare[gridDivisor][gridDivisor];
 
-        double size = ScenarioManager.AREA_SIZE/32;
+        double size = ScenarioManager.AREA_SIZE/(gridDivisor*2);
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid[i].length; j++){
-                grid[i][j] = new GridSquare(size, (size*i)+((ScenarioManager.AREA_SIZE/2)*-1), (size*j)+((ScenarioManager.AREA_SIZE/2)*-1));
+                grid[i][j] = new GridSquare(size, (size*i)+((ScenarioManager.AREA_SIZE/4)*-1), (size*j)+((ScenarioManager.AREA_SIZE/4)*-1));
             }
         }
 
@@ -132,46 +132,8 @@ public class RelativeGrid {
             }
         }
 
-        System.out.println("NUM CANDIDATES: " + promotedCandidates.size());
-        int iterationNum = 1;
-        double bestCapacity = 0;
-        double lastCapacity = 0;
-        double currEfficiency = 0;
-        while(bestCapacity < ScenarioManager.TARGET_CAPACITY) {
-            bestCapacity = ScenarioManager.calculateTotalCapacity();
-            int bestCandidateIndex = -1;
-            double currCapacity = 0;
-            double bestEfficiency = ScenarioManager.calculateEfficiency();
-            System.out.println("NUM MICRO BS: " + iterationNum++);
-            System.out.println("CURRENT CAPACITY: " + bestCapacity);
-            System.out.println("CURRENT EFFICIENCY: " + bestEfficiency);
-            System.out.println("TARGET CAPACITY: " + ScenarioManager.TARGET_CAPACITY);
-            System.out.println("CAPACITY CHANGE: " + (bestCapacity - lastCapacity));
-            System.out.println("EFFICIENCY CHANGE: " + (bestEfficiency - currEfficiency));
-            for (int i = 0; i < promotedCandidates.size(); i++) {
-                if (i % 100 == 0) {
-                    System.out.println(i * 100 / promotedCandidates.size() + "% complete");
-                }
-                BaseStation b = promotedCandidates.get(i);
-                ScenarioManager.solutionSet.add(b);
-                currCapacity = ScenarioManager.calculateTotalCapacity();
-                currEfficiency = ScenarioManager.calculateEfficiency();
+        ScenarioManager.greedySolution(promotedCandidates, "solutionGridRelative.txt");
 
-                if (currEfficiency > bestEfficiency) {
-                    lastCapacity = bestCapacity;
-                    bestEfficiency = currEfficiency;
-                    bestCapacity = currCapacity;
-                    bestCandidateIndex = i;
-                }
-
-                ScenarioManager.solutionSet.remove(ScenarioManager.solutionSet.size() - 1);
-            }
-            ScenarioManager.solutionSet.add(promotedCandidates.get(bestCandidateIndex));
-            promotedCandidates.remove(bestCandidateIndex);
-        }
-
-
-        ScenarioManager.saveSolution("solutionGridRelative.txt");
 
     }
 

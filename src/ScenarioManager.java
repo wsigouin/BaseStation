@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -26,21 +27,21 @@ public class ScenarioManager {
     static double SMALL_SCALE_FADING = 1;
     static double THERMAL_NOISE = 0.0000000000000000000039810717055; //Taken from previous work, TODO: VERIFY
     static int RESOURCE_BLOCKS = 50; //from paper
-    static double BANDWITH = 10; //paper
+    static double BANDWIDTH = 10; //paper
     static double AREA_SIZE = 10000;
 
     static double TARGET_CAPACITY = 0;
     static BaseStation[] macroBaseStations = null;
     static BaseStation[] candidates = null;
     static User[] users = null;
+    static ArrayList<Double> efficiencyChanges = null;
+    static ArrayList<Double> capacityChanges = null;
 
     //the final result will be saved in this structure
     static ArrayList<BaseStation> solutionSet = new ArrayList<>();
 
-    static void init(String filename, boolean newScenario) throws FileNotFoundException {
-        if(newScenario){
-            generateScenario(filename);
-        }
+    static void init(String filename) throws FileNotFoundException {
+
         java.io.File file = new java.io.File(filename);
 
         java.util.Scanner in = new java.util.Scanner(file);
@@ -167,13 +168,13 @@ public class ScenarioManager {
             //number of subcarriers divided amongst all users on the tower at one time
             for(int i = 0; i < base.getNumUsers(); i++){
                 if(i < subcarrierGroupOneSize){
-                    capacity += (BANDWITH
-                            * (Math.log10(1 + calculateSINR(base.getUser(i))) / Math.log10(2)))
+                    capacity += (BANDWIDTH
+                            * (Calc.log(2,1 + calculateSINR(base.getUser(i)))))
                             * groupOneSubcarriers;
                 }
                 else{
-                    capacity += (BANDWITH
-                            * (Math.log10(1 + calculateSINR(base.getUser(i))) / Math.log10(2)))
+                    capacity += (BANDWIDTH
+                            * (Calc.log(2,1 + calculateSINR(base.getUser(i)))))
                             * groupTwoSubcarriers;
                 }
             }
@@ -197,46 +198,6 @@ public class ScenarioManager {
         return totalCapacity/powerConsumption;
     }
 
-    private static void generateScenario(String filename) throws FileNotFoundException{
-        PrintWriter out = new PrintWriter(filename);
-
-        int numMacro = (int)(Math.random()*(100 - 50 + 1) + 50);
-
-        out.write(numMacro +"\n");
-
-        for(int i = 0; i < numMacro; i++){
-            double num1 = Math.random()*(5000 + 5000) - 5000;
-            double num2 = (Math.random()*(5000 + 5000) - 5000);
-            out.write(num1 + " " + num2 + " \n");
-        }
-
-        int numCandidates = (int)(Math.random()*(1000 - 500 + 1) + 500);
-
-        out.write(numCandidates +"\n");
-
-        for(int i = 0; i < numCandidates; i++){
-            double num1 = Math.random()*(5000 + 5000) - 5000;
-            double num2 = (Math.random()*(5000 + 5000) - 5000);
-            out.write(num1 + " " + num2 + " \n");
-        }
-
-        int numUsers = (int)(Math.random()*(10000 - 5000 + 1) + 5000);
-
-        out.write(numUsers +"\n");
-
-        for(int i = 0; i < numUsers; i++){
-            double num1 = Math.random()*(5000 + 5000) - 5000;
-            double num2 = (Math.random()*(5000 + 5000) - 5000);
-            out.write(num1 + " " + num2 + " \n");
-        }
-
-        double efficiencyScale = (Math.random()*(5)) + 1;
-
-        out.write(efficiencyScale + " ");
-
-        out.close();
-    }
-
     static void saveSolution(String filename) throws FileNotFoundException{
         PrintWriter out = new PrintWriter(filename);
         out.println("Number of Macro Base Stations: " + macroBaseStations.length);
@@ -244,6 +205,18 @@ public class ScenarioManager {
         out.println("Total number of Base Stations: " + solutionSet.size());
         out.println("Overall capacity " + calculateTotalCapacity());
         out.println("Overall Efficiency " + calculateEfficiency());
+
+        out.println("\nCapacity Changes Per Base : ");
+        for(Double num : capacityChanges){
+            out.print(num+"\n");
+        }
+
+
+        out.println("\nEfficiency Changes Per Base : ");
+        for(Double num : efficiencyChanges){
+            out.print(num+"\n");
+        }
+
 
         out.println("\nBase Stations : ");
         for(int i = 0; i < solutionSet.size(); i++){
@@ -254,5 +227,57 @@ public class ScenarioManager {
 
         out.close();
     }
+
+    static void greedySolution(ArrayList<BaseStation> locations, String solutionFileName) throws FileNotFoundException {
+        efficiencyChanges = new ArrayList<>();
+        capacityChanges = new ArrayList<>();
+        System.out.println("NUM CANDIDATES: " + locations.size());
+        int iterationNum = 1;
+        double bestCapacity = 0;
+        double lastCapacity = 0;
+        double currEfficiency = 0;
+        double lastEfficiency = 0;
+        double bestEfficiency = 0;
+        while(iterationNum <= 100) {
+            bestCapacity = calculateTotalCapacity();
+            int bestCandidateIndex = -1;
+            double currCapacity = 0;
+            bestEfficiency = calculateEfficiency();
+            System.out.println("NUM MICRO BS: " + iterationNum++);
+            System.out.println("CURRENT CAPACITY: " + bestCapacity);
+            System.out.println("CURRENT EFFICIENCY: " + bestEfficiency);
+            System.out.println("TARGET CAPACITY: " + TARGET_CAPACITY);
+            System.out.println("CAPACITY CHANGE: " + (bestCapacity - lastCapacity));
+            capacityChanges.add(bestCapacity);
+            System.out.println("EFFICIENCY CHANGE: " + (bestEfficiency - lastEfficiency));
+            efficiencyChanges.add(bestEfficiency);
+            lastCapacity = bestCapacity;
+            lastEfficiency = bestEfficiency;
+            bestEfficiency = 0;
+            bestEfficiency = 0;
+            for (int i = 0; i < locations.size(); i++) {
+                if (i % 100 == 0) {
+                    System.out.println(i * 100 / locations.size() + "% complete");
+                }
+                BaseStation b = locations.get(i);
+                solutionSet.add(b);
+                currCapacity = ScenarioManager.calculateTotalCapacity();
+                currEfficiency = ScenarioManager.calculateEfficiency();
+
+                if (currEfficiency > bestEfficiency || bestEfficiency == 0) {
+                    bestEfficiency = currEfficiency;
+                    lastCapacity = bestCapacity;
+                    bestCapacity = currCapacity;
+                    bestCandidateIndex = i;
+                }
+
+                solutionSet.remove(ScenarioManager.solutionSet.size() - 1);
+            }
+            solutionSet.add(locations.get(bestCandidateIndex));
+            locations.remove(bestCandidateIndex);
+        }
+        saveSolution(solutionFileName);
+    }
+
 
 }
