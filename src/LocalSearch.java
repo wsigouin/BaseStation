@@ -3,6 +3,7 @@ import com.sun.org.apache.xerces.internal.impl.xs.SchemaNamespaceSupport;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * Created by William on 2017-03-30.
@@ -125,30 +126,46 @@ public class LocalSearch {
         }
 
         bestSolution.addAll(ScenarioManager.solutionSet);
+        ArrayList<BaseStation> currentSolution = new ArrayList<>();
+        currentSolution.addAll(bestSolution);
         boolean changeMade = true;
         while(changeMade) {
+            changeMade = false;
             double bestEfficiency = ScenarioManager.calculateEfficiency();
             double oldEfficiency = bestEfficiency;
 
             double currEfficiency = 0;
             double currCapacity = 0;
             String changeText = "";
-            for (BaseStation b : bestSolution) {
+            Iterator<BaseStation> bestIterator = bestSolution.iterator();
+            while (bestIterator.hasNext()) {
+                BaseStation b = bestIterator.next();
                 if (ScenarioManager.solutionSet.remove(b)) {
                     currCapacity = ScenarioManager.calculateTotalCapacity();
                     currEfficiency = ScenarioManager.calculateEfficiency();
                     if (currEfficiency >= bestEfficiency && currCapacity >= ScenarioManager.TARGET_CAPACITY) {
                         bestCapacity = currCapacity;
                         bestEfficiency = currEfficiency;
-                        bestSolution.remove(b);
+                        currentSolution.clear();
+                        currentSolution.addAll(bestSolution);
+                        currentSolution.remove(b);
                         changeMade = true;
                         changeText = "CHANGE: Removal of " + b.toString() + " for gain of " + (bestEfficiency - oldEfficiency);
+                        break;
                     }
                     ScenarioManager.solutionSet.add(b);
                 } else {
                     System.out.println("ERROR");
                 }
 
+            }
+            if(changeMade){
+                System.out.println(changeText);
+                ScenarioManager.solutionSet.clear();
+                bestSolution.clear();
+                bestSolution.addAll(currentSolution);
+                ScenarioManager.solutionSet.addAll(bestSolution);
+                continue;
             }
             for (BaseStation b : promotedCandidates) {
                 if (!bestSolution.contains(b)) {
@@ -158,10 +175,12 @@ public class LocalSearch {
                     if (currEfficiency >= bestEfficiency && currCapacity >= ScenarioManager.TARGET_CAPACITY) {
                         bestCapacity = currCapacity;
                         bestEfficiency = currEfficiency;
-                        bestSolution.remove(b);
+                        currentSolution.clear();
+                        currentSolution.addAll(bestSolution);
+                        currentSolution.add(b);
                         changeMade = true;
                         changeText = "CHANGE: Addition of " + b.toString() + " for gain of " + (bestEfficiency - oldEfficiency);
-
+                        break;
                     }
                     ScenarioManager.solutionSet.remove(b);
                 }
@@ -170,6 +189,8 @@ public class LocalSearch {
             if(changeMade){
                 System.out.println(changeText);
                 ScenarioManager.solutionSet.clear();
+                bestSolution.clear();
+                bestSolution.addAll(currentSolution);
                 ScenarioManager.solutionSet.addAll(bestSolution);
             }
         }

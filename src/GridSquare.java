@@ -8,7 +8,8 @@ public class GridSquare {
     Point location = null;
     Point center = null;
     ArrayList<BaseStation> assignedBaseStations = new ArrayList<>();
-    BaseStation centralBS = null;
+    ArrayList<User> assignedUsers = new ArrayList<>();
+    BaseStation promotedBS = null;
     int hasStations = 0;
 
     public GridSquare(double size, double x, double y){
@@ -31,11 +32,64 @@ public class GridSquare {
                 }
             }
 
-            centralBS = best;
+            promotedBS = best;
         }
         return best;
     }
 
+    public BaseStation chooseCandidateRelativeGrid(){
+        if(assignedUsers.size() == 0){
+            return chooseCandidateRelativeAll();
+        }
+        else {
+            BaseStation best = null;
+            if (assignedBaseStations.size() != 0) {
+                best = assignedBaseStations.get(0);
+                double bestDistance = 0;
+                bestDistance = Double.MAX_VALUE;
+                double currDistance = 0;
+                for (BaseStation b : assignedBaseStations) {
+                    for (User u : assignedUsers) {
+                        currDistance += Calc.distance(b.getLocation(), u.getLocation());
+                    }
+
+                    currDistance /= assignedUsers.size();
+                    if (currDistance < bestDistance) {
+                        best = b;
+                        bestDistance = currDistance;
+                    }
+                }
+
+                promotedBS = best;
+            }
+            return best;
+        }
+    }
+
+    public BaseStation chooseCandidateRelativeAll(){
+        BaseStation best = null;
+        if(assignedBaseStations.size() != 0){
+            best = assignedBaseStations.get(0);
+            double bestDistance = 0;
+            for(User u: ScenarioManager.users){
+                bestDistance += Calc.distance(best.getLocation(), u.getLocation());
+            }
+            double currDistance = 0;
+            for(BaseStation b: assignedBaseStations) {
+                for(User u: ScenarioManager.users){
+                    currDistance += Calc.distance(b.getLocation(), u.getLocation());
+                }
+
+                if(currDistance < bestDistance){
+                    best = b;
+                    bestDistance = currDistance;
+                }
+            }
+
+            promotedBS = best;
+        }
+        return best;
+    }
 
     public void addBase(BaseStation b){
         assignedBaseStations.add(b);
@@ -63,6 +117,26 @@ public class GridSquare {
     public void removeAllBase(){
         assignedBaseStations.clear();
         hasStations = 0;
+    }
+
+    public void addUser(User u){
+        assignedUsers.add(u);
+    }
+
+    public void addAllUsers(ArrayList<User> list){
+        assignedUsers.addAll(list);
+    }
+
+    public boolean removeUser(User u){
+        if(assignedUsers.contains(u)) {
+            assignedUsers.remove(u);
+            return true;
+        }
+        return false;
+    }
+
+    public void removeAllUsers(){
+        assignedUsers.clear();
     }
 
     @Override

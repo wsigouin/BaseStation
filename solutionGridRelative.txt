@@ -1,0 +1,61 @@
+Number of Macro Base Stations: 26
+Number of Micro Base Stations: 1
+Total number of Base Stations: 27
+Overall capacity 129694.94609603978
+Overall Efficiency 249.17376771573447
+
+Base Stations : 
+Base Station 0: 
+Macro BS  at Point @ (-1051.1252149940697,-3403.749685262364).
+Base Station 1: 
+Macro BS  at Point @ (2714.739298194697,-3479.0848164537047).
+Base Station 2: 
+Macro BS  at Point @ (4563.772428643324,4105.156275111405).
+Base Station 3: 
+Macro BS  at Point @ (150.0182321592838,-1273.3951793898946).
+Base Station 4: 
+Macro BS  at Point @ (-2144.6987975922816,-4010.3346033154785).
+Base Station 5: 
+Macro BS  at Point @ (-2436.603720718149,4543.466194845563).
+Base Station 6: 
+Macro BS  at Point @ (3994.117183056893,-1485.4669518129758).
+Base Station 7: 
+Macro BS  at Point @ (4215.184436405263,2164.642443718096).
+Base Station 8: 
+Macro BS  at Point @ (1189.4643330181189,2246.6469747836727).
+Base Station 9: 
+Macro BS  at Point @ (3358.820047272491,-3631.3675475024165).
+Base Station 10: 
+Macro BS  at Point @ (2370.0402864550506,3436.8143660031164).
+Base Station 11: 
+Macro BS  at Point @ (1576.0043335218652,-1466.3728924160368).
+Base Station 12: 
+Macro BS  at Point @ (265.52197971603255,-1840.7217357868035).
+Base Station 13: 
+Macro BS  at Point @ (-2536.420827413094,-961.3643561594486).
+Base Station 14: 
+Macro BS  at Point @ (3281.632322797217,1242.961287805365).
+Base Station 15: 
+Macro BS  at Point @ (273.0329835760713,3426.216880502141).
+Base Station 16: 
+Macro BS  at Point @ (-3944.223518386385,-1086.8011408107836).
+Base Station 17: 
+Macro BS  at Point @ (-2996.0763996917617,-1757.3493178283538).
+Base Station 18: 
+Macro BS  at Point @ (386.9076068068298,-1240.0114840691435).
+Base Station 19: 
+Macro BS  at Point @ (4665.381141528011,-175.10525669316212).
+Base Station 20: 
+Macro BS  at Point @ (-647.5714060081737,3158.551361279451).
+Base Station 21: 
+Macro BS  at Point @ (2945.263501391545,-530.3067228187992).
+Base Station 22: 
+Macro BS  at Point @ (-143.42187084609213,2590.262419834812).
+Base Station 23: 
+Macro BS  at Point @ (1364.4103980827958,1398.715041838157).
+Base Station 24: 
+Macro BS  at Point @ (-3401.1159267879884,3446.7744004463057).
+Base Station 25: 
+Macro BS  at Point @ (4143.845245059336,-4275.383017502521).
+Base Station 26: 
+Micro BS at Point @ (4687.044367198936,-478.3045051164163).

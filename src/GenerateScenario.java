@@ -9,12 +9,12 @@ public class GenerateScenario {
 
         PrintWriter out = new PrintWriter("scenario.txt");
         double size = ScenarioManager.AREA_SIZE/2;
-        int maxMacro = 200;
-        int minMacro = 50;
+        int maxMacro = 500;
+        int minMacro = 100;
         int maxCandidates = 10000;
         int minCandidates = 5000;
-        int minUsers = 5000;
-        int maxUsers = 10000;
+        int minUsers = 200;
+        int maxUsers = 200;
 
 
         int numMacro = (int)(Math.random()*(maxMacro - minMacro + 1) + minMacro);

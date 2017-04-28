@@ -1,0 +1,393 @@
+Number of Macro Base Stations: 185
+Number of Micro Base Stations: 8
+Total number of Base Stations: 193
+Overall capacity 1643598.4993128045
+Overall Efficiency 443.7360959267831
+
+Base Stations : 
+Base Station 0: 
+Macro BS  at Point @ (-1157.3364176311384,-1291.3452733720364).
+Base Station 1: 
+Macro BS  at Point @ (1930.0420187713917,-952.4356704795168).
+Base Station 2: 
+Macro BS  at Point @ (-2333.048668984754,-4662.219081978479).
+Base Station 3: 
+Macro BS  at Point @ (-638.6745579811304,3966.657601533894).
+Base Station 4: 
+Macro BS  at Point @ (1102.476495058172,847.1136016958735).
+Base Station 5: 
+Macro BS  at Point @ (2958.104591406708,4943.524436524684).
+Base Station 6: 
+Macro BS  at Point @ (4561.909689677008,3692.6779162645216).
+Base Station 7: 
+Macro BS  at Point @ (-2508.675963962538,28.950839494837055).
+Base Station 8: 
+Macro BS  at Point @ (-3677.780691484932,4491.502915664667).
+Base Station 9: 
+Macro BS  at Point @ (1710.0151006328797,3620.5268732734403).
+Base Station 10: 
+Macro BS  at Point @ (-2768.34781032512,2002.2654502577343).
+Base Station 11: 
+Macro BS  at Point @ (-1366.0476008729706,3267.8036914571458).
+Base Station 12: 
+Macro BS  at Point @ (-1669.303963286618,-136.07367603882903).
+Base Station 13: 
+Macro BS  at Point @ (-4110.650513293286,1177.245125779893).
+Base Station 14: 
+Macro BS  at Point @ (3421.0183650503313,-306.75565834413374).
+Base Station 15: 
+Macro BS  at Point @ (2462.412224662403,-696.005276393068).
+Base Station 16: 
+Macro BS  at Point @ (501.1449834548239,4042.4544124115255).
+Base Station 17: 
+Macro BS  at Point @ (2786.5782655234325,-1275.8749996780984).
+Base Station 18: 
+Macro BS  at Point @ (684.9049614726646,931.2821807914106).
+Base Station 19: 
+Macro BS  at Point @ (-3567.2038239648455,1100.1724367712413).
+Base Station 20: 
+Macro BS  at Point @ (-4271.562829536564,192.8529826717695).
+Base Station 21: 
+Macro BS  at Point @ (1838.2035518988268,2484.4061029480936).
+Base Station 22: 
+Macro BS  at Point @ (-4386.184761494024,710.9575292189793).
+Base Station 23: 
+Macro BS  at Point @ (-4512.914643410358,-2551.5862185043347).
+Base Station 24: 
+Macro BS  at Point @ (-4227.8819710343,-3223.4912431318544).
+Base Station 25: 
+Macro BS  at Point @ (3749.0076461245953,4584.233638676602).
+Base Station 26: 
+Macro BS  at Point @ (-523.9657463499871,1253.9328837284902).
+Base Station 27: 
+Macro BS  at Point @ (3182.5373591132493,2791.401266365905).
+Base Station 28: 
+Macro BS  at Point @ (4691.857465369903,3023.614785496691).
+Base Station 29: 
+Macro BS  at Point @ (-3471.027023441422,1445.9156339390347).
+Base Station 30: 
+Macro BS  at Point @ (-3747.0060092037174,-3745.5831581419197).
+Base Station 31: 
+Macro BS  at Point @ (-4150.970003818798,-3458.720928335507).
+Base Station 32: 
+Macro BS  at Point @ (3601.869127574493,-539.3242062779645).
+Base Station 33: 
+Macro BS  at Point @ (1296.4376986128254,-801.6055678566145).
+Base Station 34: 
+Macro BS  at Point @ (1544.3874646220638,3010.978330376338).
+Base Station 35: 
+Macro BS  at Point @ (3875.9201874679893,2560.254727182868).
+Base Station 36: 
+Macro BS  at Point @ (-3529.138327160942,4781.3977617817345).
+Base Station 37: 
+Macro BS  at Point @ (3199.050691708915,-1981.0075912141765).
+Base Station 38: 
+Macro BS  at Point @ (3319.5979732436645,4983.777583595656).
+Base Station 39: 
+Macro BS  at Point @ (-3270.016671156859,1967.003860553571).
+Base Station 40: 
+Macro BS  at Point @ (-805.9148265723879,2850.024284316056).
+Base Station 41: 
+Macro BS  at Point @ (-4695.91607843004,-179.50557700844).
+Base Station 42: 
+Macro BS  at Point @ (-2007.9965497845574,-183.7261727401392).
+Base Station 43: 
+Macro BS  at Point @ (805.9923958459858,4932.945245475023).
+Base Station 44: 
+Macro BS  at Point @ (-3335.9650605827774,-3873.8191994201234).
+Base Station 45: 
+Macro BS  at Point @ (-4190.329098692287,-3802.3716324749494).
+Base Station 46: 
+Macro BS  at Point @ (-2207.2802214840804,360.4714491414925).
+Base Station 47: 
+Macro BS  at Point @ (1711.5033729558681,-367.55433214960976).
+Base Station 48: 
+Macro BS  at Point @ (-4933.625669740271,4300.2911030017585).
+Base Station 49: 
+Macro BS  at Point @ (1428.5283991103524,-3952.990164077397).
+Base Station 50: 
+Macro BS  at Point @ (-2079.6557157937455,-1255.2283098565354).
+Base Station 51: 
+Macro BS  at Point @ (-4912.5945583114435,-988.9830036643621).
+Base Station 52: 
+Macro BS  at Point @ (-872.3596008885352,-571.3728584589244).
+Base Station 53: 
+Macro BS  at Point @ (2295.726177181633,4774.610406142494).
+Base Station 54: 
+Macro BS  at Point @ (4443.2634959198,-3976.5132058369254).
+Base Station 55: 
+Macro BS  at Point @ (2565.8014013482234,-1464.4289897114595).
+Base Station 56: 
+Macro BS  at Point @ (-3458.7058349637764,1357.0545196514713).
+Base Station 57: 
+Macro BS  at Point @ (-3747.9316082579,-495.18853843364104).
+Base Station 58: 
+Macro BS  at Point @ (-3568.9127925681473,2447.0834269956813).
+Base Station 59: 
+Macro BS  at Point @ (1966.7792141573645,590.7904228060343).
+Base Station 60: 
+Macro BS  at Point @ (4298.677792474402,-277.46194793720497).
+Base Station 61: 
+Macro BS  at Point @ (2854.6459998192404,-2794.891065294386).
+Base Station 62: 
+Macro BS  at Point @ (-1708.2305723045179,-4107.785685807202).
+Base Station 63: 
+Macro BS  at Point @ (3335.637242867575,3685.6820243707316).
+Base Station 64: 
+Macro BS  at Point @ (4151.442037705503,1321.4677685330525).
+Base Station 65: 
+Macro BS  at Point @ (-33.873291636337854,-4859.469329070753).
+Base Station 66: 
+Macro BS  at Point @ (790.9820553886229,-1509.3950173422963).
+Base Station 67: 
+Macro BS  at Point @ (4922.127574346419,-2865.6283486073444).
+Base Station 68: 
+Macro BS  at Point @ (-3067.9950249017475,4133.868914218636).
+Base Station 69: 
+Macro BS  at Point @ (-1725.659902215335,-4428.174386415136).
+Base Station 70: 
+Macro BS  at Point @ (1730.30104279446,3995.8528422597847).
+Base Station 71: 
+Macro BS  at Point @ (-4296.72350452952,4375.206234614778).
+Base Station 72: 
+Macro BS  at Point @ (-2041.3927744793968,1792.5577464246799).
+Base Station 73: 
+Macro BS  at Point @ (1593.7252750061689,-888.5079042352409).
+Base Station 74: 
+Macro BS  at Point @ (-239.23127460807063,927.2054177449045).
+Base Station 75: 
+Macro BS  at Point @ (3551.3477814184716,592.222855185827).
+Base Station 76: 
+Macro BS  at Point @ (-1748.477907999264,4786.3073489360795).
+Base Station 77: 
+Macro BS  at Point @ (-2691.605012295234,-970.6212329808504).
+Base Station 78: 
+Macro BS  at Point @ (648.5103213861312,2803.048945781885).
+Base Station 79: 
+Macro BS  at Point @ (-1213.01275937838,-2813.9164499425383).
+Base Station 80: 
+Macro BS  at Point @ (1751.0200376762996,-1721.7957423130538).
+Base Station 81: 
+Macro BS  at Point @ (1088.1587811175805,-912.5228408638654).
+Base Station 82: 
+Macro BS  at Point @ (249.77134597422264,3077.2955762369565).
+Base Station 83: 
+Macro BS  at Point @ (-2484.581805614632,183.4152400684652).
+Base Station 84: 
+Macro BS  at Point @ (41.172565639068125,4084.2085696995455).
+Base Station 85: 
+Macro BS  at Point @ (1183.0734837712498,-1363.9215991734854).
+Base Station 86: 
+Macro BS  at Point @ (1395.7390909513215,-1950.493007511418).
+Base Station 87: 
+Macro BS  at Point @ (1370.465435152595,-3770.0398572019103).
+Base Station 88: 
+Macro BS  at Point @ (-2052.10049102032,-3701.584626909916).
+Base Station 89: 
+Macro BS  at Point @ (2164.878288798346,-1398.4518054201158).
+Base Station 90: 
+Macro BS  at Point @ (676.7777262646723,390.72678367676326).
+Base Station 91: 
+Macro BS  at Point @ (-2004.5196267180054,67.33130559995152).
+Base Station 92: 
+Macro BS  at Point @ (-3585.121646492091,4641.151099989062).
+Base Station 93: 
+Macro BS  at Point @ (2232.918291447051,-1583.358564887435).
+Base Station 94: 
+Macro BS  at Point @ (2650.115777297574,402.7467519286711).
+Base Station 95: 
+Macro BS  at Point @ (4413.950415453437,-4563.757692305844).
+Base Station 96: 
+Macro BS  at Point @ (-2572.35475510871,1322.731577159686).
+Base Station 97: 
+Macro BS  at Point @ (-1152.225507221236,-353.5411808795234).
+Base Station 98: 
+Macro BS  at Point @ (3011.470792740758,-1600.9031519893315).
+Base Station 99: 
+Macro BS  at Point @ (2370.4653355617293,-1245.9616861972222).
+Base Station 100: 
+Macro BS  at Point @ (4631.814001314127,-1401.9005132473449).
+Base Station 101: 
+Macro BS  at Point @ (1836.2087001678692,664.8176437260654).
+Base Station 102: 
+Macro BS  at Point @ (1122.7543918026713,1036.842619909141).
+Base Station 103: 
+Macro BS  at Point @ (2568.780022041751,3549.6720906317623).
+Base Station 104: 
+Macro BS  at Point @ (2545.655816294792,291.7963003761661).
+Base Station 105: 
+Macro BS  at Point @ (-2556.016575298222,-2579.901015463403).
+Base Station 106: 
+Macro BS  at Point @ (997.4175393996857,-2736.749897856404).
+Base Station 107: 
+Macro BS  at Point @ (2533.5330497972845,1945.190548504279).
+Base Station 108: 
+Macro BS  at Point @ (4718.601679597165,4207.334518869742).
+Base Station 109: 
+Macro BS  at Point @ (-686.8792128657988,-2170.3629422372683).
+Base Station 110: 
+Macro BS  at Point @ (2345.0004055685495,2041.3803460425715).
+Base Station 111: 
+Macro BS  at Point @ (-4677.814073423178,1972.7896590996634).
+Base Station 112: 
+Macro BS  at Point @ (3687.2307735179093,4835.033256202751).
+Base Station 113: 
+Macro BS  at Point @ (4860.161799088508,-158.2914385278591).
+Base Station 114: 
+Macro BS  at Point @ (-4223.550436531427,-1481.321042290329).
+Base Station 115: 
+Macro BS  at Point @ (-1186.2558243977796,2016.5060683178144).
+Base Station 116: 
+Macro BS  at Point @ (-1919.693649055222,-1727.6254192698848).
+Base Station 117: 
+Macro BS  at Point @ (-1968.0101923533011,-4295.809591869697).
+Base Station 118: 
+Macro BS  at Point @ (-1228.2375136267256,1802.620236207038).
+Base Station 119: 
+Macro BS  at Point @ (-2199.1778014329557,-3832.396223236213).
+Base Station 120: 
+Macro BS  at Point @ (4724.420638834121,3770.9517733589364).
+Base Station 121: 
+Macro BS  at Point @ (1915.7798425498522,-2521.0591132116).
+Base Station 122: 
+Macro BS  at Point @ (1511.5261958383198,7.469118015216736).
+Base Station 123: 
+Macro BS  at Point @ (3611.618072699468,-3217.2806360049267).
+Base Station 124: 
+Macro BS  at Point @ (-3898.1841385617645,-1175.9383740536887).
+Base Station 125: 
+Macro BS  at Point @ (-2820.365102569211,1340.9745297156032).
+Base Station 126: 
+Macro BS  at Point @ (4173.907562753897,736.2252141625058).
+Base Station 127: 
+Macro BS  at Point @ (-1511.645212917254,3033.82867388051).
+Base Station 128: 
+Macro BS  at Point @ (-3988.063406062805,-2790.9857508379364).
+Base Station 129: 
+Macro BS  at Point @ (4820.476919275079,701.4874354692283).
+Base Station 130: 
+Macro BS  at Point @ (-201.3381100490842,3661.808048263405).
+Base Station 131: 
+Macro BS  at Point @ (4448.75578556166,-3260.902084327394).
+Base Station 132: 
+Macro BS  at Point @ (-1211.7170005025591,1898.2112465379487).
+Base Station 133: 
+Macro BS  at Point @ (4195.746310467954,693.7986293342437).
+Base Station 134: 
+Macro BS  at Point @ (-680.2808592856481,2371.5499425276266).
+Base Station 135: 
+Macro BS  at Point @ (-1142.885325810783,-736.319913514495).
+Base Station 136: 
+Macro BS  at Point @ (-77.87678485021115,-2746.933456499091).
+Base Station 137: 
+Macro BS  at Point @ (-184.51878060386844,-938.7327321363282).
+Base Station 138: 
+Macro BS  at Point @ (-2132.0863776907595,1139.0555854735003).
+Base Station 139: 
+Macro BS  at Point @ (1431.522564699454,-4220.479063620922).
+Base Station 140: 
+Macro BS  at Point @ (-1555.3712974379287,-2585.1774092428714).
+Base Station 141: 
+Macro BS  at Point @ (2871.3343727698375,986.2529820849086).
+Base Station 142: 
+Macro BS  at Point @ (3945.416116343604,4787.493014773678).
+Base Station 143: 
+Macro BS  at Point @ (-86.18626847550968,-4326.764394741247).
+Base Station 144: 
+Macro BS  at Point @ (3918.9949269184126,306.33049387737356).
+Base Station 145: 
+Macro BS  at Point @ (-4020.910438580105,-2100.82433566939).
+Base Station 146: 
+Macro BS  at Point @ (-4426.566703501637,2308.377358646939).
+Base Station 147: 
+Macro BS  at Point @ (4128.795512533283,391.11992927419305).
+Base Station 148: 
+Macro BS  at Point @ (3394.110062393256,-841.1461334980722).
+Base Station 149: 
+Macro BS  at Point @ (2111.24320683318,2806.741918753367).
+Base Station 150: 
+Macro BS  at Point @ (14.736480186558765,-2600.0888993514227).
+Base Station 151: 
+Macro BS  at Point @ (659.321566388302,2510.3570243857575).
+Base Station 152: 
+Macro BS  at Point @ (-3828.6659870736516,-4022.0407779314214).
+Base Station 153: 
+Macro BS  at Point @ (1196.2114065477772,-2821.6014216978447).
+Base Station 154: 
+Macro BS  at Point @ (-3827.4190961125987,1588.9409446744166).
+Base Station 155: 
+Macro BS  at Point @ (2863.772405040814,2325.4830702760655).
+Base Station 156: 
+Macro BS  at Point @ (-3264.050074753869,3862.557395347718).
+Base Station 157: 
+Macro BS  at Point @ (360.7243838982422,-3069.9232915763405).
+Base Station 158: 
+Macro BS  at Point @ (1267.5813685136281,-1899.4030923238993).
+Base Station 159: 
+Macro BS  at Point @ (3462.50671010354,739.1750629439775).
+Base Station 160: 
+Macro BS  at Point @ (-1295.1488465999719,-2408.845438142927).
+Base Station 161: 
+Macro BS  at Point @ (-3708.025522820607,-2455.712531158044).
+Base Station 162: 
+Macro BS  at Point @ (-4105.898802273259,-2860.3265066146864).
+Base Station 163: 
+Macro BS  at Point @ (-580.1565971863274,-253.57919162619237).
+Base Station 164: 
+Macro BS  at Point @ (-4857.972732650614,4389.379358096914).
+Base Station 165: 
+Macro BS  at Point @ (696.0740057835555,865.6334771970623).
+Base Station 166: 
+Macro BS  at Point @ (4057.723559308217,-4252.182543042561).
+Base Station 167: 
+Macro BS  at Point @ (1348.1392429237112,4301.136831343516).
+Base Station 168: 
+Macro BS  at Point @ (3093.408116079818,-707.1530196417953).
+Base Station 169: 
+Macro BS  at Point @ (2329.3933952106518,-1389.2027305867596).
+Base Station 170: 
+Macro BS  at Point @ (-2704.638131016105,-2099.4168685805616).
+Base Station 171: 
+Macro BS  at Point @ (2160.52423591309,1854.2940992356762).
+Base Station 172: 
+Macro BS  at Point @ (2692.633039557615,2019.4211771091223).
+Base Station 173: 
+Macro BS  at Point @ (1579.3331417912186,132.07117112985088).
+Base Station 174: 
+Macro BS  at Point @ (4479.57631515285,3008.4175161524718).
+Base Station 175: 
+Macro BS  at Point @ (2198.855526038712,-1647.3841806953592).
+Base Station 176: 
+Macro BS  at Point @ (3689.3040164655413,4764.939557566571).
+Base Station 177: 
+Macro BS  at Point @ (-3928.899032402768,4473.487418350785).
+Base Station 178: 
+Macro BS  at Point @ (1408.6550865631052,3485.6415372178544).
+Base Station 179: 
+Macro BS  at Point @ (563.4542152857666,1986.9071347579002).
+Base Station 180: 
+Macro BS  at Point @ (4751.287085333877,2836.4629079406914).
+Base Station 181: 
+Macro BS  at Point @ (-1722.9506889972536,-741.3851466979349).
+Base Station 182: 
+Macro BS  at Point @ (-3215.973180155145,4551.483048740156).
+Base Station 183: 
+Macro BS  at Point @ (4871.18705233563,-1520.915967156894).
+Base Station 184: 
+Micro BS at Point @ (1752.7646038150842,2511.742881725765).
+Base Station 185: 
+Micro BS at Point @ (-4362.624638100049,-4117.886726944624).
+Base Station 186: 
+Micro BS at Point @ (-4608.590750053592,411.59141251859364).
+Base Station 187: 
+Micro BS at Point @ (-2631.8790443677676,1574.133457165448).
+Base Station 188: 
+Micro BS at Point @ (4420.617114151404,2652.8490730985477).
+Base Station 189: 
+Micro BS at Point @ (-140.35964743784552,-1573.3454147091484).
+Base Station 190: 
+Micro BS at Point @ (4260.753556139431,-4453.027760356535).
+Base Station 191: 
+Micro BS at Point @ (1463.89876328653,334.9346512010243).
+Base Station 192: 
+Micro BS at Point @ (-1639.8864339335482,1876.988698519266).

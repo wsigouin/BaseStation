@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Created by wills on 2017-02-16.
  */
-public class GreedyGrid {
+public class RelativeGrid {
     public static void main (String[] args) throws FileNotFoundException {
         ScenarioManager.init("scenario.txt", false);
         System.out.println("GRID SOLUTION");
@@ -53,6 +53,55 @@ public class GreedyGrid {
             grid[x][y].addBase(b);
         }
 
+        for(User u: ScenarioManager.users){
+            xCoord = u.getX();
+            yCoord = u.getY();
+
+            double xmod = Math.abs(xCoord/size);
+            int x;
+            int y;
+            if(xCoord > 0){
+                x = (int)(gridDivisor/2 + xmod);
+            }
+            else{
+                x = (int)(gridDivisor/2 - xmod);
+            }
+
+            double ymod = Math.abs(yCoord/size);
+            if(yCoord > 0){
+                y = (int)(gridDivisor/2 - ymod);
+            }
+            else{
+                y = (int)(gridDivisor/2 + ymod);
+            }
+
+            grid[x][y].addUser(u);
+
+            if(x > 0) {
+                grid[x-1][y].addUser(u);
+                if(y > 0) {
+                    grid[x - 1][y - 1].addUser(u);
+                }
+            }
+            else if(y > 0){
+                grid[x][y - 1].addUser(u);
+            }
+
+            if(x < gridDivisor-1) {
+                grid[x + 1][y].addUser(u);
+                if(y < gridDivisor-1) {
+                    grid[x + 1][y + 1].addUser(u);
+                }
+
+            }
+            else if( y < gridDivisor-1) {
+                grid[x][y + 1].addUser(u);
+            }
+
+
+
+        }
+
         for(int i = 0; i < grid.length-1; i++){
             for(int j = 0; j < grid[i].length - 1; j++){
                 if(grid[i][j].hasStations + grid[i+1][j].hasStations + grid[i][j+1].hasStations + grid[i+1][j+1].hasStations == 1){
@@ -75,7 +124,7 @@ public class GreedyGrid {
         for(GridSquare[] row : grid){
             for(GridSquare g : row){
                 if(g.hasStations == 1) {
-                    BaseStation b = g.chooseCandidate();
+                    BaseStation b = g.chooseCandidateRelativeGrid();
                     if (b != null) {
                         promotedCandidates.add(b);
                     }
@@ -122,7 +171,7 @@ public class GreedyGrid {
         }
 
 
-        ScenarioManager.saveSolution("solutionGrid.txt");
+        ScenarioManager.saveSolution("solutionGridRelative.txt");
 
     }
 
