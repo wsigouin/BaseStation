@@ -18,8 +18,6 @@ public class Calc {
     //TODO: Check for correctness
     static double channelGain(double distance, double smallScaleFading, boolean isMacro){
         double pLoss = pathLoss(distance, isMacro);
-
-        pLoss = Math.pow(10, -1 * pLoss/10);
         return pLoss * smallScaleFading;
     }
 

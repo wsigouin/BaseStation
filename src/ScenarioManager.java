@@ -20,10 +20,10 @@ import java.util.ArrayList;
 public class ScenarioManager {
 
     //constant variables given in paper
-    static double TRANSMISSION_POWER_MICRO = 38; //TODO: verify units - previous work changed?
-    static double TRANSMISSION_POWER_MACRO = 865;
-    static double POWER_CONSUMPTION_MICRO = 1;
-    static double POWER_CONSUMPTION_MACRO = 20;
+    static double TRANSMISSION_POWER_MICRO = 1; //TODO: verify units - previous work changed?
+    static double TRANSMISSION_POWER_MACRO = 20;
+    static double POWER_CONSUMPTION_MICRO = 38;
+    static double POWER_CONSUMPTION_MACRO = 865;
     static double SMALL_SCALE_FADING = 1;
     static double THERMAL_NOISE = 0.0000000000000000000039810717055; //Taken from previous work, TODO: VERIFY
     static int RESOURCE_BLOCKS = 50; //from paper
@@ -125,7 +125,7 @@ public class ScenarioManager {
         BaseStation base = currUser.getAssignedBS();
         double distance = Calc.distance(currUser.getLocation(), base.getLocation());
 
-        double signal = (base.isMacro()?POWER_CONSUMPTION_MACRO:POWER_CONSUMPTION_MICRO)
+        double signal = (base.isMacro()?TRANSMISSION_POWER_MACRO:TRANSMISSION_POWER_MICRO)
                 * Calc.channelGain(distance, SMALL_SCALE_FADING, base.isMacro());
 
         double noise = THERMAL_NOISE;
@@ -134,7 +134,7 @@ public class ScenarioManager {
             if(base != solutionSet.get(i)) {
                 distance = Calc.distance(currUser.getLocation(), solutionSet.get(i).getLocation());
                 interference +=
-                        (solutionSet.get(i).isMacro()?POWER_CONSUMPTION_MACRO:POWER_CONSUMPTION_MICRO)
+                        (solutionSet.get(i).isMacro()?TRANSMISSION_POWER_MACRO:TRANSMISSION_POWER_MICRO)
                         * Calc.channelGain(distance, SMALL_SCALE_FADING, solutionSet.get(i).isMacro());
             }
         }
