@@ -1,3 +1,5 @@
+import javafx.stage.Stage;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +21,7 @@ public class GreedyGrid {
 
         GridSquare[][] grid = new GridSquare[gridDivisor][gridDivisor];
 
-        double size = ScenarioManager.AREA_SIZE/(32*2);
+        double size = ScenarioManager.AREA_SIZE/(gridDivisor*2);
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid[i].length; j++){
                 grid[i][j] = new GridSquare(size, (size*i)+((ScenarioManager.AREA_SIZE/4)*-1), (size*j)+((ScenarioManager.AREA_SIZE/4)*-1));

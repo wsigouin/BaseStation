@@ -51,6 +51,6 @@ public class BaseStation {
 
     @Override
     public String toString(){
-        return (isMacro?"Macro ":"Micro ") + " Base Station located at " + location;
+        return (isMacro?"Macro ":"Micro ") + "Base Station located at " + location;
     }
 }

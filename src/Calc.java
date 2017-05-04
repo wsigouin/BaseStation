@@ -11,7 +11,7 @@ public class Calc {
             return 128.1+37.6*(Math.log10(distance));
         }
         else{
-            return 140.7+37.6*(Math.log10(distance));
+            return 140.7+36.7*(Math.log10(distance));
         }
     }
     //Channel Gain formula taken from previous work

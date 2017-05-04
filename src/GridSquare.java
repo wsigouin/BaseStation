@@ -46,7 +46,6 @@ public class GridSquare {
             if (assignedBaseStations.size() != 0) {
                 best = assignedBaseStations.get(0);
                 double bestDistance = Double.MAX_VALUE;
-                bestDistance = Double.MAX_VALUE;
                 double currDistance = 0;
                 for (BaseStation b : assignedBaseStations) {
                     for (User u : assignedUsers) {

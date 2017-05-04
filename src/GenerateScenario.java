@@ -9,12 +9,13 @@ public class GenerateScenario {
 
         PrintWriter out = new PrintWriter("scenario.txt");
         double size = ScenarioManager.AREA_SIZE/4;
-        int maxMacro = 15;
-        int minMacro = 7;
-        int maxCandidates = 10000;
-        int minCandidates = 5000;
-        int minUsers = 200;
-        int maxUsers = 200;
+        double macroRange = ScenarioManager.AREA_SIZE*0.3;
+        int maxMacro = 10;
+        int minMacro = 10;
+        int maxCandidates = 5000;
+        int minCandidates = 2500;
+        int minUsers = 100;
+        int maxUsers = 100;
 
 
         int numMacro = (int)(Math.random()*(maxMacro - minMacro + 1) + minMacro);
@@ -23,8 +24,8 @@ public class GenerateScenario {
         out.write(numMacro +"\n");
 
         for(int i = 0; i < numMacro; i++){
-            double num1 = Math.random()*(size*2 + size*2) - size*2;
-            double num2 = (Math.random()*(size*2 + size*2) - size*2);
+            double num1 = Math.random()*(macroRange + macroRange) - macroRange;
+            double num2 = (Math.random()*(macroRange + macroRange) - macroRange);
             out.write(num1 + " " + num2 + " \n");
         }
 
@@ -48,7 +49,7 @@ public class GenerateScenario {
             out.write(num1 + " " + num2 + " \n");
         }
 
-        double efficiencyScale = 5;
+        double efficiencyScale = 20;
 
         out.write(efficiencyScale + " ");
 

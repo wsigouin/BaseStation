@@ -22,7 +22,7 @@ public class ScenarioManager {
     //constant variables given in paper
     static double TRANSMISSION_POWER_MICRO = 38; //TODO: verify units - previous work changed?
     static double TRANSMISSION_POWER_MACRO = 865;
-    static double POWER_CONSUMPTION_MICRO = 0.5;
+    static double POWER_CONSUMPTION_MICRO = 1;
     static double POWER_CONSUMPTION_MACRO = 20;
     static double SMALL_SCALE_FADING = 1;
     static double THERMAL_NOISE = 0.0000000000000000000039810717055; //Taken from previous work, TODO: VERIFY
@@ -238,7 +238,7 @@ public class ScenarioManager {
         double currEfficiency = 0;
         double lastEfficiency = 0;
         double bestEfficiency = 0;
-        while(iterationNum <= 100) {
+        while(bestCapacity < TARGET_CAPACITY && iterationNum < candidates.length) {
             bestCapacity = calculateTotalCapacity();
             int bestCandidateIndex = -1;
             double currCapacity = 0;
@@ -253,7 +253,6 @@ public class ScenarioManager {
             efficiencyChanges.add(bestEfficiency);
             lastCapacity = bestCapacity;
             lastEfficiency = bestEfficiency;
-            bestEfficiency = 0;
             bestEfficiency = 0;
             for (int i = 0; i < locations.size(); i++) {
                 if (i % 100 == 0) {
@@ -278,6 +277,80 @@ public class ScenarioManager {
         }
         saveSolution(solutionFileName);
     }
+
+    static void distanceSolution(String solutionFileName) throws FileNotFoundException {
+        efficiencyChanges = new ArrayList<>();
+        capacityChanges = new ArrayList<>();
+        System.out.println("NUM CANDIDATES: " + candidates.length);
+        int iterationNum = 1;
+        double bestCapacity = 0;
+        double lastCapacity = 0;
+        double currEfficiency = 0;
+        double lastEfficiency = 0;
+        double bestEfficiency = 0;
+        while(bestCapacity < TARGET_CAPACITY && iterationNum < candidates.length) {
+            bestCapacity = calculateTotalCapacity();
+            double currCapacity = 0;
+            bestEfficiency = calculateEfficiency();
+            System.out.println("NUM MICRO BS: " + iterationNum++);
+            System.out.println("CURRENT CAPACITY: " + bestCapacity);
+            System.out.println("CURRENT EFFICIENCY: " + bestEfficiency);
+            System.out.println("TARGET CAPACITY: " + TARGET_CAPACITY);
+            System.out.println("CAPACITY CHANGE: " + (bestCapacity - lastCapacity));
+            capacityChanges.add(bestCapacity);
+            System.out.println("EFFICIENCY CHANGE: " + (bestEfficiency - lastEfficiency));
+            efficiencyChanges.add(bestEfficiency);
+            lastCapacity = bestCapacity;
+            lastEfficiency = bestEfficiency;
+            double bestDistance = 0;
+            BaseStation best = null;
+            for(BaseStation b : ScenarioManager.candidates){
+                if(!solutionSet.contains(b)) {
+                    double currDistance = 0;
+                    for (BaseStation m : ScenarioManager.solutionSet) {
+                        currDistance += Calc.distance(b.getLocation(), m.getLocation());
+                    }
+                    if (currDistance > bestDistance) {
+                        best = b;
+                        bestDistance = currDistance;
+                        bestEfficiency = calculateEfficiency();
+                        bestCapacity = calculateTotalCapacity();
+                    }
+                }
+            }
+            solutionSet.add(best);
+        }
+        saveSolution(solutionFileName);
+    }
+
+    static void distanceSolutionGreedy(String solutionFileName) throws FileNotFoundException {
+        efficiencyChanges = new ArrayList<>();
+        capacityChanges = new ArrayList<>();
+        ArrayList<BaseStation> tempSet = new ArrayList<>();
+        System.out.println("NUM CANDIDATES: " + candidates.length);
+        int iterationNum = 1;
+        while(iterationNum <= 1024) {
+            iterationNum ++;
+            double bestDistance = 0;
+            BaseStation best = null;
+            for(BaseStation b : ScenarioManager.candidates){
+                if(!solutionSet.contains(b)) {
+                    double currDistance = 0;
+                    for (BaseStation m : ScenarioManager.solutionSet) {
+                        currDistance += Calc.distance(b.getLocation(), m.getLocation());
+                    }
+                    if (currDistance > bestDistance) {
+                        best = b;
+                        bestDistance = currDistance;
+                    }
+                }
+            }
+            tempSet.add(best);
+        }
+        greedySolution(tempSet, solutionFileName);
+    }
+
+
 
 
 }
